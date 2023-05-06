@@ -27,10 +27,10 @@ public class User {
     private String user_second_phone;
 
     @Column(name = "created_at", nullable = false)
-    private Date created_at;
+    private String created_at;
 
     @Column(name = "updated_at", nullable = false)
-    private Date updated_at;
+    private String updated_at;
 
     @ManyToOne
     @JoinColumn(name = "states_id")
