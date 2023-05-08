@@ -1,9 +1,13 @@
 import React from "react";
 import { Formik} from "formik";
-import {Text,View} from "react-native";
+import {View} from "react-native";
+import { Text } from "react-native-paper";
 import FormikInputValues from "./FormikInputValues.jsx";
 import StyledButton from "./StyledButton.jsx";
+import StyledSelectDropdown from "./StyledSelectDropdown.jsx";
 
+
+const kindStreet=["Calle","Carrera"];
 
 const initialsValues ={
     name_domicile:'',
@@ -18,7 +22,7 @@ const initialsValues ={
 export default function InputsDomicile(){
     return (
         <Formik  initialValues={initialsValues} onSubmit={(values=>console.log(values))}>
-            {({handleSubmit})=>{
+            {({handleChange,handleSubmit})=>{
                 return (
                     <View>
                         <Text>Nombre del domicilio</Text>
@@ -29,31 +33,40 @@ export default function InputsDomicile(){
                             returnKeyTap="next"
                         />
                         <Text>Tipo de Calle</Text>
+                        <StyledSelectDropdown 
+                            data={kindStreet} 
+                            name="kind_street"
+                            onSelect={handleChange("kind_street")}
+                        />
                         <Text>Dirección</Text>
                         <View style={{flexDirection:'row'}}>
                             <FormikInputValues
                                 name="kind_street"
                                 disabled={true}
+                                style={{width:'30%'}}
                             />
                             <FormikInputValues
                             name="number_street"
                             maxLength={3}
                             keyboardType="name-phone-pad"
                             returnKeyTap="next"
+                            style={{width:'20%'}}
                             />
-                            <Text>#</Text>
+                            <Text variant="headlineLarge" style={{alignSelf:"center",marginLeft:1,marginRight:1}}>#</Text>
                             <FormikInputValues
                             name="first_number_house"
                             maxLength={3}
                             keyboardType="name-phone-pad"
                             returnKeyTap="next"
+                            style={{width:'20%'}}
                             />
-                            <Text>-</Text>
+                            <Text variant="headlineLarge" style={{alignSelf:"center",marginLeft:1,marginRight:1}}>-</Text>
                             <FormikInputValues
                             name="second_number_house"
                             maxLength={3}
                             keyboardType="name-phone-pad"
                             returnKeyTap="next"
+                            style={{width:'20%'}}
                             />
                         </View>
                         <Text>Indicación adicional</Text>
@@ -61,8 +74,10 @@ export default function InputsDomicile(){
                             name="indication"
                             placeholder="Ej: Al lado de ------"
                             maxLength={100}
+                            multiline={true}
+                            numberOfLines={4}
                             keyboardType="name-phone-pad"
-                            returnKeyTap="next"
+                            returnKeyTap="ok"
                         />
                         
                         <StyledButton style={{marginTop:10}} onPress={handleSubmit} title={'Registrarme'}/>   

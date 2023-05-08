@@ -1,5 +1,5 @@
 import React from "react";
-import { View, StyleSheet } from "react-native";
+import { View, StyleSheet, ScrollView } from "react-native";
 import StyledLoginImage from "../components/StyledLoginImage";
 import InputsLogin from "../components/InputsLogin";
 import StyledTextLogin from "../components/StyledTextTitle";
@@ -12,23 +12,25 @@ import theme from "../theme";
 const Login =()=>{
     const navigation=useNavigation();
     return(
-        <View style={theme.containerView}>
-            <StyledLoginImage/>
-            <StyledTextLogin>
-                Iniciar Sesión1
-            </StyledTextLogin>
-            <InputsLogin/>
-            <View style={styles.style}>
-                <StyledButtonText>
-                    Olvide mi Contraseña
-                </StyledButtonText>
-                <StyledButtonText
-                    onPress={()=> navigation.navigate('register')}
-                >
-                    Registrarme
-                </StyledButtonText>
+        <ScrollView>
+            <View style={theme.containerView}>
+                <StyledLoginImage/>
+                <StyledTextLogin>
+                    Iniciar Sesión
+                </StyledTextLogin>
+                <InputsLogin/>
+                <View style={styles.style}>
+                    <StyledButtonText>
+                        Olvide mi Contraseña
+                    </StyledButtonText>
+                    <StyledButtonText
+                        onPress={()=> navigation.navigate('register')}
+                    >
+                        Registrarme
+                    </StyledButtonText>
+                </View>
             </View>
-        </View>
+        </ScrollView>
     )
 }
 const styles=StyleSheet.create({

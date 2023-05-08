@@ -1,5 +1,5 @@
 import React from "react";
-import { View,Text, StyleSheet } from "react-native";
+import { View,Text, StyleSheet, ScrollView } from "react-native";
 import InputsRegister from "../components/InputsRegister";
 import StyledTextLogin from "../components/StyledTextTitle";
 import StyledButtonText from "../components/StyledButtonText";
@@ -9,19 +9,21 @@ import theme from "../theme";
 const Register=()=>{
     const navigation=useNavigation();
     return(
-        <View style={theme.containerView}>
-            <View style={styles.style}>
-                <StyledButtonText icon="arrow-left"
-                    onPress={()=> navigation.navigate('login')}
-                >
-                    Volver
-                </StyledButtonText>
+        <ScrollView>
+            <View style={theme.containerView}>
+                <View style={styles.style}>
+                    <StyledButtonText icon="arrow-left"
+                        onPress={()=> navigation.navigate('login')}
+                    >
+                        Volver
+                    </StyledButtonText>
+                </View>
+                <StyledTextLogin style={{marginBottom:10}}>
+                    Registro
+                </StyledTextLogin>
+                <InputsRegister/>
             </View>
-            <StyledTextLogin style={{marginBottom:10}}>
-                Registro
-            </StyledTextLogin>
-            <InputsRegister/>
-        </View>
+        </ScrollView>
     )
 }
 const styles=StyleSheet.create({
