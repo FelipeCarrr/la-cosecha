@@ -2,6 +2,7 @@ package com.app.lacosecha.Services.Impl;
 
 import com.app.lacosecha.Services.UserPassService;
 
+import com.app.lacosecha.models.UserAddress;
 import com.app.lacosecha.models.UserPass;
 import com.app.lacosecha.repository.UserPassRepository;
 import com.app.lacosecha.utils.Constants;
@@ -29,6 +30,17 @@ public class UserPassServiceImpl implements UserPassService {
         if (!userBD.get().getUser_pass_pass().equals(userPass.getUser_pass_pass())) {
             throw new RuntimeException(Constants.PASSWORD_INCORRECT);
         }
-        return jwtUtil.create(String.valueOf(userBD.get().getUser_id()), String.valueOf(userPass.getUserPassPhone()));
+        return jwtUtil.create(String.valueOf(userBD.get().getUserId()), String.valueOf(userPass.getUserPassPhone()));
+    }
+
+    @Override
+    public Boolean createUserPass(UserPass userPass) {
+        try {
+            userPassRepository.save(userPass);
+            return true;
+        }catch (Exception e){
+            System.out.println(e);
+            return false;
+        }
     }
 }

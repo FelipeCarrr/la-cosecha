@@ -12,9 +12,9 @@ public class UserPass {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long user_pass_id;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User user_id;
+    @OneToOne
+    @JoinColumn(name = "user_id",nullable = false)
+    private User userId;
 
     @Column(name = "user_pass_phone", length = 10, nullable = false)
     private String userPassPhone;
@@ -27,8 +27,8 @@ public class UserPass {
     private States states_id;
 
     @Column(name = "created_at", nullable = false)
-    private Date created_at;
+    private String created_at;
 
     @Column(name = "updated_at", nullable = false)
-    private Date updated_at;
+    private String updated_at;
 }

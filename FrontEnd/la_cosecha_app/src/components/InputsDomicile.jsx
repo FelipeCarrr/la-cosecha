@@ -5,6 +5,8 @@ import { Text } from "react-native-paper";
 import FormikInputValues from "./FormikInputValues.jsx";
 import StyledButton from "./StyledButton.jsx";
 import StyledSelectDropdown from "./StyledSelectDropdown.jsx";
+import saveRegisterUser from "../hooks/saveRegisterUser.js";
+import saveRegisterUserPass from "../hooks/saveRegisterUserPass.js";
 
 
 const kindStreet=["Calle","Carrera"];
@@ -19,9 +21,13 @@ const initialsValues ={
 }
 
 
-export default function InputsDomicile(){
+export default function InputsDomicile({dataUser}){
     return (
-        <Formik  initialValues={initialsValues} onSubmit={(values=>console.log(values))}>
+        <Formik  initialValues={initialsValues} onSubmit={(async values=>{
+            const user= await saveRegisterUser(dataUser);
+            const pass=await saveRegisterUserPass(dataUser,user.data);
+            console.log(pass);
+            })}>
             {({handleChange,handleSubmit})=>{
                 return (
                     <View>

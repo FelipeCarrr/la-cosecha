@@ -36,7 +36,7 @@ public class UserController {
     public ResponseEntity savedUser(@RequestBody User user){
         Boolean res = userService.createUser(user);
         if(res==true){
-            apiResponse = new ApiResponse(Constants.REGISTER_CREATED,"");
+            apiResponse = new ApiResponse(Constants.REGISTER_CREATED,user.getUserId());
             return new ResponseEntity(apiResponse, HttpStatus.CREATED) ;
         }else{
             apiResponse = new ApiResponse(Constants.REGISTER_BAD,"");
