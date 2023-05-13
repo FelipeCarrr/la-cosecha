@@ -7,6 +7,7 @@ import StyledButton from "./StyledButton.jsx";
 import StyledSelectDropdown from "./StyledSelectDropdown.jsx";
 import saveRegisterUser from "../hooks/saveRegisterUser.js";
 import saveRegisterUserPass from "../hooks/saveRegisterUserPass.js";
+import { addressValidationSchema } from "../validationSchemas/address.js";
 
 
 const kindStreet=["Calle","Carrera"];
@@ -23,7 +24,7 @@ const initialsValues ={
 
 export default function InputsDomicile({dataUser}){
     return (
-        <Formik  initialValues={initialsValues} onSubmit={(async values=>{
+        <Formik  validationSchema={addressValidationSchema} initialValues={initialsValues} onSubmit={(async values=>{
             const user= await saveRegisterUser(dataUser);
             const pass=await saveRegisterUserPass(dataUser,user.data);
             console.log(pass);

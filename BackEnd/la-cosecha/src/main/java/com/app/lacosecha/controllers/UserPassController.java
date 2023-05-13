@@ -35,4 +35,16 @@ public class UserPassController {
             return new ResponseEntity(apiResponse, HttpStatus.BAD_REQUEST);
         }
     }
+
+    @PostMapping(value="/login")
+    public ResponseEntity login(@RequestBody UserPass userPass){
+        try{
+            data.put("token",userPassService.login(userPass));
+            apiResponse = new ApiResponse(Constants.USER_LOGIN,data);
+            return new ResponseEntity(apiResponse, HttpStatus.OK);
+        }catch (Exception e){
+            apiResponse = new ApiResponse(e.getMessage(),"");
+            return new ResponseEntity(apiResponse, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 }

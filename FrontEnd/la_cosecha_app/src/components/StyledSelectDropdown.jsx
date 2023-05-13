@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import {Text,Alert, StyleSheet } from "react-native";
+import {Text,Alert, StyleSheet,Image } from "react-native";
 import SelectDropdown from "react-native-select-dropdown";
 import theme from "../theme";
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
-
+import { Feather } from '@expo/vector-icons'; 
 
 
 const styles=StyleSheet.create({
@@ -78,7 +78,9 @@ const StyledSelectDropdown =({style={},...props})=>{
                     isOpened ? styles.buttonStyle.buttonStyleOpened : styles.buttonStyle.buttonStyleClosed
                 }
                 renderDropdownIcon={() => {
-                    return <FontAwesome name={isOpened ? 'chevron-up' : 'chevron-down'} color={'#444'} size={18} />;
+                    
+                    //return <FontAwesome name={isOpened ? 'chevron-down' : 'chevron-down'} color={'#444'} size={18} />;
+                    return <Feather name="shopping-bag" size={18} color={theme.colors.primary} />
                 }}
                 {...styles.propsStyles}
                 style={styledSelect} 
