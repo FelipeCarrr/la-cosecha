@@ -1,12 +1,28 @@
 import React from "react";
-import { View,Text,StyleSheet, ScrollView } from "react-native";
-import StyledTextLogin from "../components/StyledTextTitle";
+import { View} from "react-native";
+import Ripple from "react-native-material-ripple";
+import StyledCardOrderNew from "../components/StyledCardOrderNew";
+import { useFocusEffect } from '@react-navigation/native';
 import theme from "../theme";
 
-const LogisticOrderNew=()=>{
+const LogisticOrderNew=({navigation,orderInfo, setOrdeInfo})=>{
+    useFocusEffect(() => {
+        setOrdeInfo(false);
+      });
+    navigation.is
     return(
         <View style={theme.containerView}>
-            <Text>Home</Text>
+            <Ripple 
+            onPress={()=>{
+                navigation.navigate('StackOrderNewInfo')
+                
+            }}
+            rippleColor={theme.colors.primary}
+            rippleDuration={600}
+            rippleContainerBorderRadius={20}
+            > 
+                <StyledCardOrderNew/>
+            </Ripple>
         </View>
     )
 }

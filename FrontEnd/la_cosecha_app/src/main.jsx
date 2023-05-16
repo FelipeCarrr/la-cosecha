@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import { NavigationContainer, DefaultTheme} from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
@@ -11,6 +11,8 @@ import Register from "./pages/register";
 import RegisterAddressInitial from "./pages/registerAddressInitial";
 
 import LogisticOrderNew from "./pages/logisticOrderNew";
+import LogisticOrderNewInfo from "./pages/logisticOrderNewInfo";
+
 import LogisticOrderPrepare from "./pages/logisticOderPrepare";
 import LogisticOrderDelivery from "./pages/logisticOrderDelivery";
 import LogisticOrderDelivered from "./pages/logisticOrderdelivered";
@@ -30,6 +32,7 @@ import theme from "./theme";
 import { ScrollView, View } from "react-native";
 
 const LoginStackNavigator= createNativeStackNavigator();
+const stack=createNativeStackNavigator();
 const LogisticTabNavigator=createBottomTabNavigator();
 const LogisticTabTopNavigator=createMaterialTopTabNavigator();
 
@@ -39,7 +42,7 @@ const MyTheme={
     colors:{
         ...DefaultTheme.colors,
         background:'#fff',
-        notification:'blue'
+        primary:'red'
         
     },
 };
@@ -74,10 +77,46 @@ function StackLogin(){
     );
 }
 
-function TabsTopHomeLogistic(){
+function StackOrderNew({orderInfo, setOrdeInfo}){
+    
+    return(
+        <stack.Navigator
+            initialRouteName="StackOrderNew"
+            screenOptions={{
+                animationTypeForReplace:'pop',
+                
+            }}
+        >
+            <stack.Screen
+                name="StackOrderNew"
+                options={{
+                    headerShown: false
+                }}
+            >
+                {(props) => (
+                    <LogisticOrderNew {...props} orderInfo={orderInfo} setOrdeInfo={setOrdeInfo} />
+                )}
+            </stack.Screen>
+
+            <stack.Screen
+                name="StackOrderNewInfo"
+                options={{
+                    headerShown: false,
+                }}
+            >
+                {(props) => (
+                    <LogisticOrderNewInfo {...props} orderInfo={orderInfo} setOrdeInfo={setOrdeInfo} />
+                )}
+            </stack.Screen>
+        </stack.Navigator>
+    )
+}
+
+function TabsTopHomeLogistic({orderInfo, setOrdeInfo}){
     const [isFocusBar, setIsFocusBar]=useState(false);
     return(
-        <>
+        <>  
+            {orderInfo ? null :
             <View style={{
                 backgroundColor:'#E3FFED'
             }}>
@@ -103,9 +142,12 @@ function TabsTopHomeLogistic(){
                 }}
                 iconColor={isFocusBar ? theme.colors.primary : '#000'}
                 selectionColor={theme.colors.primary}
+                placeholder="Buscar"
                 
             />
             </View>
+            }
+            
             <LogisticTabTopNavigator.Navigator
                 initialRouteName="orderNew"
                 screenOptions={{
@@ -113,7 +155,8 @@ function TabsTopHomeLogistic(){
                     tabBarInactiveTintColor: '#000',
                     tabBarStyle: {
                         height: 50,
-                        width: '100%'
+                        width: '100%',
+                        display: orderInfo ? 'none':'flex'
                     },
 
                     tabBarLabelStyle: {
@@ -129,16 +172,20 @@ function TabsTopHomeLogistic(){
                         width: '100%',
                         backgroundColor:'#E3FFED'
                     },
-                
+                    
+                    swipeEnabled: !orderInfo
                 }}
                 scroll
             >
                 <LogisticTabTopNavigator.Screen
                     name="orderNew"
-                    component={LogisticOrderNew}
                     options={{
                         tabBarLabel: 'Nuevo',
-                    }} />
+                    }}>
+                        {(props) => (
+                            <StackOrderNew {...props} orderInfo={orderInfo} setOrdeInfo={setOrdeInfo} />
+                        )}
+                </LogisticTabTopNavigator.Screen>
                 <LogisticTabTopNavigator.Screen
                     name="orderPrepare"
                     component={LogisticOrderPrepare}
@@ -164,6 +211,7 @@ function TabsTopHomeLogistic(){
 }
 
 function TabsLogistic(){
+    const [orderInfo, setOrdeInfo] = useState(false);
     return(
         <LogisticTabNavigator.Navigator
             initialRouteName="pedidos"
@@ -174,6 +222,7 @@ function TabsLogistic(){
                     paddingBottom:10,
                     borderTopWidth:0,
                     elevation:0,
+                    display: orderInfo ? 'none':'flex'
                 },
                 tabBarLabelStyle: {
                     fontSize: 14, // Tamaño de fuente modificado a 16
@@ -196,17 +245,20 @@ function TabsLogistic(){
                     headerShown:false
                 }}
             />
-            <LoginStackNavigator.Screen 
+            <LoginStackNavigator.Screen
                 name="pedidos" 
-                component={TabsTopHomeLogistic}
                 options={{
                     tabBarLabel:'Pedidos',
                     tabBarIcon:({color})=>(
                         <Feather name="shopping-bag" size={24} color={color} />
                     ),
-                    headerShown:false
+                    headerShown:false,
                 }}
-            />
+            >
+                {(props) => (
+                    <TabsTopHomeLogistic {...props} orderInfo={orderInfo} setOrdeInfo={setOrdeInfo} />
+                )}
+            </LoginStackNavigator.Screen> 
             <LoginStackNavigator.Screen 
                 name="personal" 
                 component={LogisticPersonal}
