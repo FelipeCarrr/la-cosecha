@@ -6,18 +6,23 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 
 
-import Login from "./pages/login";
-import Register from "./pages/register";
-import RegisterAddressInitial from "./pages/registerAddressInitial";
+import Login from "./pages/auth/login";
+import Register from "./pages/auth/register";
+import RegisterAddressInitial from "./pages/auth/registerAddressInitial";
 
-import LogisticOrderNew from "./pages/logisticOrderNew";
-import LogisticOrderNewInfo from "./pages/logisticOrderNewInfo";
+import LogisticOrderNew from "./pages/logisticOrder/logisticOrderNew";
+import LogisticOrderNewInfo from "./pages/logisticOrder/logisticOrderNewInfo";
 
-import LogisticOrderPrepare from "./pages/logisticOderPrepare";
-import LogisticOrderDelivery from "./pages/logisticOrderDelivery";
-import LogisticOrderDelivered from "./pages/logisticOrderdelivered";
+import LogisticOrderPrepare from "./pages/logisticOrder/logisticOderPrepare";
+import LogisticOrderDelivery from "./pages/logisticOrder/logisticOrderDelivery";
+import LogisticOrderDelivered from "./pages/logisticOrder/logisticOrderdelivered";
 import LogisticInventary from "./pages/logisticInventary";
-import LogisticPersonal from "./pages/logisticPersonal";
+
+
+
+import LogisticPersonal from "./pages/logisticPersonal/logisticPersonal";
+import LogisticPersonalProvider from "./pages/logisticPersonal/logistecPersonalProvider";
+import LogisticPersonalDelivery from "./pages/logisticPersonal/logisticPersonalDelivery";
 
 
 
@@ -25,14 +30,15 @@ import { Feather } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
-import { Searchbar } from "react-native-paper";
 import Constants from "expo-constants";
 
 import theme from "./theme";
-import { ScrollView, View } from "react-native";
+import {  View } from "react-native";
+import StyledSearchBar from "./components/StyledSearchBar";
 
 const LoginStackNavigator= createNativeStackNavigator();
 const stack=createNativeStackNavigator();
+const stackProvider=createNativeStackNavigator();
 const LogisticTabNavigator=createBottomTabNavigator();
 const LogisticTabTopNavigator=createMaterialTopTabNavigator();
 
@@ -112,40 +118,60 @@ function StackOrderNew({orderInfo, setOrdeInfo}){
     )
 }
 
+function StackPersonalHome({orderInfo, setOrdeInfo}){
+    return(
+        <stackProvider.Navigator
+            initialRouteName="PersonalHome"
+            screenOptions={{
+                animationTypeForReplace:'pop',
+                
+            }}
+        >
+            <stackProvider.Screen
+                name="PersonalHome"
+                options={{
+                    headerShown: false
+                }}
+            >
+                {(props) => (
+                    <LogisticPersonal {...props} orderInfo={orderInfo} setOrdeInfo={setOrdeInfo} />
+                )}
+            </stackProvider.Screen>
+            <stackProvider.Screen
+                name="PersonalProvider"
+                options={{
+                    headerShown: false
+                }}
+            >
+                {(props) => (
+                    <LogisticPersonalProvider {...props} orderInfo={orderInfo} setOrdeInfo={setOrdeInfo} />
+                )}
+            </stackProvider.Screen>
+            <stackProvider.Screen
+                name="DeliveryMenu"
+                options={{
+                    headerShown: false
+                }}
+            >
+                {(props) => (
+                    <LogisticPersonalDelivery {...props} orderInfo={orderInfo} setOrdeInfo={setOrdeInfo} />
+                )}
+            </stackProvider.Screen>
+
+        </stackProvider.Navigator>
+    )
+}
+
 function TabsTopHomeLogistic({orderInfo, setOrdeInfo}){
-    const [isFocusBar, setIsFocusBar]=useState(false);
+    
     return(
         <>  
             {orderInfo ? null :
-            <View style={{
-                backgroundColor:'#E3FFED'
-            }}>
-            <Searchbar
-                onFocus={()=>{
-                    setIsFocusBar(true)
-                }}
-                onBlur={()=>{
-                    setIsFocusBar(false)
-                }}
-                style={
-                    {
-                        marginTop: (Constants.statusBarHeight+10),
-                        marginLeft:20,
-                        marginRight:20,
-                        backgroundColor:'#fff',
-                        borderWidth: 1,
-                        borderColor: isFocusBar ? theme.colors.primary : '#000',
-                        
-                    }
-                }
-                inputStyle={{
-                }}
-                iconColor={isFocusBar ? theme.colors.primary : '#000'}
-                selectionColor={theme.colors.primary}
-                placeholder="Buscar"
-                
-            />
-            </View>
+                <View style={{
+                    backgroundColor:'#E3FFED'
+                }}>
+                    <StyledSearchBar/>
+                </View>
             }
             
             <LogisticTabTopNavigator.Navigator
@@ -261,7 +287,6 @@ function TabsLogistic(){
             </LoginStackNavigator.Screen> 
             <LoginStackNavigator.Screen 
                 name="personal" 
-                component={LogisticPersonal}
                 options={{
                     tabBarLabel:'Personal',
                     tabBarIcon:({color})=>(
@@ -269,7 +294,11 @@ function TabsLogistic(){
                     ),
                     headerShown:false
                 }}
-            />
+            >
+                {(props) => (
+                    <StackPersonalHome {...props} orderInfo={orderInfo} setOrdeInfo={setOrdeInfo} />
+                )}
+            </LoginStackNavigator.Screen>
         </LogisticTabNavigator.Navigator>
     )
 }

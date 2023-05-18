@@ -1,8 +1,8 @@
 import React from "react";
-import { View,Text,StyleSheet, ScrollView } from "react-native";
-import StyledButtonBack from "../components/StyleButtonBack";
+import { View,Text} from "react-native";
+import StyledButtonBack from "../../components/StyleButtonBack";
 import { useLayoutEffect } from 'react';
-import theme from "../theme";
+import theme from "../../theme";
 
 const LogisticOrderNewInfo=({navigation,orderInfo, setOrdeInfo})=>{
 

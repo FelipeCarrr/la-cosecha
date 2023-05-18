@@ -1,10 +1,10 @@
 import React from "react";
 import { View, StyleSheet, ScrollView } from "react-native";
-import InputsDomicile from "../components/InputsDomicile";
-import StyledTextLogin from "../components/StyledTextTitle";
-import StyledButtonText from "../components/StyledButtonText";
+import InputsDomicile from "../../components/InputsDomicile";
+import StyledTextLogin from "../../components/StyledTextTitle";
+import StyledButtonText from "../../components/StyledButtonText";
 import { useNavigation } from "@react-navigation/native";
-import theme from "../theme";
+import theme from "../../theme";
 
 const RegisterAddressInitial=({route})=>{
     const navigation=useNavigation();

@@ -1,9 +1,9 @@
 import React from "react";
 import { View} from "react-native";
 import Ripple from "react-native-material-ripple";
-import StyledCardOrderNew from "../components/StyledCardOrderNew";
+import StyledCardOrderNew from "../../components/StyledCardOrderNew";
 import { useFocusEffect } from '@react-navigation/native';
-import theme from "../theme";
+import theme from "../../theme";
 
 const LogisticOrderNew=({navigation,orderInfo, setOrdeInfo})=>{
     useFocusEffect(() => {

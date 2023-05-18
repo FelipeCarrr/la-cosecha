@@ -1,10 +1,10 @@
 import React from "react";
 import { View,Text, StyleSheet, ScrollView } from "react-native";
-import InputsRegister from "../components/InputsRegister";
-import StyledTextLogin from "../components/StyledTextTitle";
-import StyledButtonText from "../components/StyledButtonText";
+import InputsRegister from "../../components/InputsRegister";
+import StyledTextLogin from "../../components/StyledTextTitle";
+import StyledButtonText from "../../components/StyledButtonText";
 import { useNavigation } from "@react-navigation/native";
-import theme from "../theme";
+import theme from "../../theme";
 
 const Register=()=>{
     const navigation=useNavigation();

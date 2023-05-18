@@ -13,6 +13,7 @@ const theme = {
     colors:{
         primary:"#14AE5C",
         primaryDark:"#108044",
+        primaryLight:"#E3FFED",
         backgroundColorPrimary:'#fff'
     },
     fonts:{

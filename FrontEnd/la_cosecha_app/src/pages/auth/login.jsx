@@ -1,11 +1,11 @@
 import React from "react";
 import { View, StyleSheet, ScrollView } from "react-native";
-import StyledLoginImage from "../components/StyledLoginImage";
-import InputsLogin from "../components/InputsLogin";
-import StyledTextLogin from "../components/StyledTextTitle";
-import StyledButtonText from "../components/StyledButtonText";
+import StyledLoginImage from "../../components/StyledLoginImage";
+import InputsLogin from "../../components/InputsLogin";
+import StyledTextLogin from "../../components/StyledTextTitle";
+import StyledButtonText from "../../components/StyledButtonText";
 import { useNavigation } from "@react-navigation/native";
-import theme from "../theme";
+import theme from "../../theme";
 
 
 
