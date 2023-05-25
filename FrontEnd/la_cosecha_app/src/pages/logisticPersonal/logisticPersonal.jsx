@@ -6,10 +6,12 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { Card } from "react-native-paper";
 import  Constants  from "expo-constants"
 import { useIsFocused } from "@react-navigation/native";
+import { SimpleLineIcons } from '@expo/vector-icons';
+import logout from "../../hooks/logout";
 
 
 
-const LogisticPersonal=({navigation, orderInfo, setOrdeInfo})=>{
+const LogisticPersonal=({navigation, orderInfo, setOrdeInfo, isLogin, setIsLogin,isBuyer,setIsBuyer,isLogistic,setIsLogistic,isMerchant, setISMerchant})=>{
     useIsFocused(()=>{
         setOrdeInfo(false);
     })
@@ -26,6 +28,11 @@ const LogisticPersonal=({navigation, orderInfo, setOrdeInfo})=>{
                     navigation.navigate('DeliveryMenu')
                 }}>
                     <MaterialCommunityIcons name="truck-fast" size={24} color="white" />
+                </StyledListOptionsWithIcons>
+                <StyledListOptionsWithIcons title={'Cerrar sesion'} onPress={()=>{
+                logout({isLogin, setIsLogin,isBuyer,setIsBuyer,isLogistic,setIsLogistic,isMerchant, setISMerchant})
+                }}>
+                    <SimpleLineIcons name="logout" size={24} color="white" />
                 </StyledListOptionsWithIcons>
             </Card>
         </View> 

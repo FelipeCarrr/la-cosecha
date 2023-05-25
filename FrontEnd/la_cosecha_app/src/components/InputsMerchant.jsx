@@ -20,7 +20,7 @@ const initialsValues ={
     nameBussines:'',
     name:'',
     phone:'',
-    secondPhone:' ',
+    secondPhone:null,
     name_domicile:'',
     kind_street:'',
     number_street:'',
@@ -128,7 +128,7 @@ const InputsMerchant=({style={},...props})=>{
                                 returnKeyTap="ok"
                             />
                             
-                            <StyledButton style={{marginTop:10}} onPress={handleSubmit} title={'Registrarme'}/>
+                            <StyledButton style={{marginTop:10}} onPress={handleSubmit} title={'Registrar mercader'}/>
                         </View>
                      )
             }}

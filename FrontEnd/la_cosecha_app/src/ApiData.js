@@ -13,6 +13,10 @@ const api={
     },
     address:{
         savedAddress:domain+'/address/'
+    },
+    productLot:{
+        saveProductLot:domain+'/productLot',
+        getProductLot:domain+'/productLot',
     }
 
 }

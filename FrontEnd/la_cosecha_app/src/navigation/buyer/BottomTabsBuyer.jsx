@@ -6,7 +6,7 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { Fontisto } from '@expo/vector-icons';
 import theme from "../../theme";
 
-import BuyerHome from "../../pages/buyer/buyerHome";
+import HomeBuyerStack from "./home/HomeBuyerStack";
 import BuyerAccount from "../../pages/buyer/buyerAccount";
 import BuyerMyShopping from "../../pages/buyer/buyerMyShopping";
 
@@ -21,7 +21,8 @@ export default function BottomTabsBuyer ({isLogin, setIsLogin,isBuyer,setIsBuyer
                 ...theme.bottomTabsScreenOptions,
                 tabBarStyle:{
                     ...theme.bottomTabsScreenOptions.tabBarStyle,
-                    display: fullHeight ? 'none':'flex'
+                    display: fullHeight ? 'none':'flex',
+                    paddingTop:10
                 },
             }}
         >
@@ -55,7 +56,7 @@ export default function BottomTabsBuyer ({isLogin, setIsLogin,isBuyer,setIsBuyer
                 }}
             >
                 {(props)=>(
-                    <BuyerHome {...props}/>
+                    <HomeBuyerStack {...props}/>
                 )}
             </bottomTabs.Screen>
             <bottomTabs.Screen

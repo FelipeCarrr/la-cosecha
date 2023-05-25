@@ -12,11 +12,14 @@ import { FontAwesome } from '@expo/vector-icons';
 import { Entypo } from '@expo/vector-icons';
 import StyledButton from "./StyledButton";
 import theme from "../theme";
+import uploadPhoto from "../hooks/firebaseConfig";
+import saveProductLot from "../hooks/saveProductLot";
 
 
 
 const InputsProductRegister =()=>{
-    const [image,setImage]=useState('https://placehold.co/300')
+     
+    const [image,setImage]=useState('https://placehold.co/300');
     const [isModalVisible, setIsModalVisible] = useState(false);
 
     const onModalClose = () => {
@@ -34,6 +37,7 @@ const InputsProductRegister =()=>{
       
           if (!result.canceled) {
             console.log(result);
+            
             setImage(result.assets[0].uri);
           } else {
             alert('You did not select any image.');
@@ -53,8 +57,20 @@ const InputsProductRegister =()=>{
             alert('You did not select any image.');
           }
     }
+    const initialValues={
+        productName:'',
+        productPrice:'',
+        productCant:'',
+        productDescription:''
+    }
     return(
-        <Formik>
+        <Formik initialValues={initialValues} onSubmit={( values=>{
+            uploadPhoto(image,values);
+
+            
+            // saveProductLot(values,URL);
+            // console.log(product);
+        })}>
             {({handleChange,handleSubmit})=>{
                 return(
                     <View>

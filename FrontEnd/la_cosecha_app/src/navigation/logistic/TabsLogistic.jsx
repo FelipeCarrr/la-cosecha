@@ -10,7 +10,7 @@ import StackPersonalHome from "./personal/StackPersonalHome";
 
 const LogisticTabNavigator=createBottomTabNavigator();
 
-export default function TabsLogistic(){
+export default function TabsLogistic({isLogin, setIsLogin,isBuyer,setIsBuyer,isLogistic,setIsLogistic,isMerchant, setISMerchant}){
     const [orderInfo, setOrdeInfo] = useState(false);
     return(
         <LogisticTabNavigator.Navigator
@@ -50,7 +50,12 @@ export default function TabsLogistic(){
                 }}
             >
                 {(props) => (
-                    <StackPersonalHome {...props} orderInfo={orderInfo} setOrdeInfo={setOrdeInfo} />
+                    <StackPersonalHome {...props} orderInfo={orderInfo} setOrdeInfo={setOrdeInfo} 
+                                            isLogin={isLogin} setIsLogin={setIsLogin} 
+                                            isBuyer={isBuyer} setIsBuyer={setIsBuyer} 
+                                            isLogistic={isLogistic} setIsLogistic={setIsLogistic}
+                                            isMerchant={isMerchant} setISMerchant={setISMerchant}
+                    />
                 )}
             </LogisticTabNavigator.Screen>
         </LogisticTabNavigator.Navigator>

@@ -21,6 +21,9 @@ const loginStorage=async (token,userId,rolId,{isLogin, setIsLogin,isBuyer,setIsB
         if(rolId==2){
             setIsLogistic(true)
         }
+        if(rolId==3){
+            setISMerchant(true)
+        }
     } catch (e) {
         console.log(e);
     }

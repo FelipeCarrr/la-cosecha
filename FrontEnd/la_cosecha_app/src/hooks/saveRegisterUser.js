@@ -15,8 +15,8 @@ const saveRegisterUser=(dataUser,rol)=>{
                 rol_id:{
                     rol_id:rol
                 },
-                user_phone:dataUser.phone,
-                user_second_phone:dataUser.secondPhone,
+                userPhone:dataUser.phone,
+                user_second_phone:dataUser.secondPhone ? dataUser.secondPhone : null,
                 states_id:{
                     states_id:1
                 },

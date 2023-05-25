@@ -8,7 +8,7 @@ import LogisticPersonalDelivery from "../../../pages/logisticPersonal/logisticPe
 
 const stackProvider=createNativeStackNavigator();
 
-export default function StackPersonalHome({orderInfo, setOrdeInfo}){
+export default function StackPersonalHome({orderInfo, setOrdeInfo, isLogin, setIsLogin,isBuyer,setIsBuyer,isLogistic,setIsLogistic,isMerchant, setISMerchant}){
     return(
         <stackProvider.Navigator
             initialRouteName="PersonalHome"
@@ -24,7 +24,12 @@ export default function StackPersonalHome({orderInfo, setOrdeInfo}){
                 }}
             >
                 {(props) => (
-                    <LogisticPersonal {...props} orderInfo={orderInfo} setOrdeInfo={setOrdeInfo} />
+                    <LogisticPersonal {...props} orderInfo={orderInfo} setOrdeInfo={setOrdeInfo}
+                    isLogin={isLogin} setIsLogin={setIsLogin} 
+                    isBuyer={isBuyer} setIsBuyer={setIsBuyer} 
+                    isLogistic={isLogistic} setIsLogistic={setIsLogistic}
+                    isMerchant={isMerchant} setISMerchant={setISMerchant} 
+                    />
                 )}
             </stackProvider.Screen>
             <stackProvider.Screen

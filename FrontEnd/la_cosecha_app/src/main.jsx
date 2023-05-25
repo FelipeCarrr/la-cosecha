@@ -42,8 +42,18 @@ export default function Main() {
                                 isLogistic={isLogistic} setIsLogistic={setIsLogistic}
                                 isMerchant={isMerchant} setISMerchant={setISMerchant}
                             />
-                          : isLogistic ? <TabsLogistic/>
-                                       : isMerchant ? <TabsBottomMerchant/>
+                          : isLogistic ? <TabsLogistic
+                                            isLogin={isLogin} setIsLogin={setIsLogin} 
+                                            isBuyer={isBuyer} setIsBuyer={setIsBuyer} 
+                                            isLogistic={isLogistic} setIsLogistic={setIsLogistic}
+                                            isMerchant={isMerchant} setISMerchant={setISMerchant}
+                                        />
+                                       : isMerchant ? <TabsBottomMerchant
+                                                        isLogin={isLogin} setIsLogin={setIsLogin} 
+                                                                isBuyer={isBuyer} setIsBuyer={setIsBuyer} 
+                                                                isLogistic={isLogistic} setIsLogistic={setIsLogistic}
+                                                                isMerchant={isMerchant} setISMerchant={setISMerchant}
+                                                        />
                                                     : <StackLogin isLogin={isLogin} setIsLogin={setIsLogin}/>
                 :<StackLogin isLogin={isLogin} setIsLogin={setIsLogin} 
                     isBuyer={isBuyer} setIsBuyer={setIsBuyer} 
