@@ -26,10 +26,23 @@
         "image": "./assets/images/splash.png",
         "resizeMode": "contain",
         "backgroundColor": "#14AE5C"
+      },
+      "config":{
+        "googleMaps":{
+          "apiKey":"AIzaSyCaRlZS2hC_QQ-5tRXnN1fpVtinXRysXDc"
+        }
       }
     },
     "web": {
       "favicon": "./assets/images/favicon.png"
-    }
+    },
+    "plugins": [
+      [
+        "expo-location",
+        {
+          "locationAlwaysAndWhenInUsePermission": "Allow $(PRODUCT_NAME) to use your location."
+        }
+      ]
+    ]
   }
 }

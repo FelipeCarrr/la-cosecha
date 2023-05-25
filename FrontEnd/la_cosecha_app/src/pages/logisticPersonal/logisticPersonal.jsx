@@ -17,10 +17,10 @@ const LogisticPersonal=({navigation, orderInfo, setOrdeInfo})=>{
         
          <View style={styles.containerView}>
             <Card style={styles.Card}>
-                <StyledListOptionsWithIcons title='Proveedores' onPress={()=>{
+                <StyledListOptionsWithIcons title='Mercaderes' onPress={()=>{
                     navigation.navigate('PersonalProvider')
                 }}>
-                    <FontAwesome5 name="truck-loading" size={18} color="white" />
+                    <FontAwesome5 name="store" size={18} color="white" />
                 </StyledListOptionsWithIcons>
                 <StyledListOptionsWithIcons title='Repartidores' onPress={()=>{
                     navigation.navigate('DeliveryMenu')

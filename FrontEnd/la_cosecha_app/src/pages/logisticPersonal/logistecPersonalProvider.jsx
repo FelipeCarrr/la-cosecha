@@ -1,15 +1,15 @@
 import React from "react";
 import { View,Text,StyleSheet,} from "react-native";
 import theme from "../../theme";
-import  Constants  from "expo-constants"
-import { useIsFocused } from "@react-navigation/native";
+import  Constants  from "expo-constants";
+import { useFocusEffect } from '@react-navigation/native';
 import StyledButtonBack from "../../components/StyleButtonBack";
 import StyeledSearchbarwithIcon from "../../components/StyledSearchBarwithIcon";
-import { AntDesign } from '@expo/vector-icons';
+import { MaterialIcons } from '@expo/vector-icons';
 
 
 const LogisticPersonalProvider=({navigation, orderInfo, setOrdeInfo})=>{
-    useIsFocused(()=>{
+    useFocusEffect(()=>{
         setOrdeInfo(false);
     })
     return(
@@ -30,8 +30,12 @@ const LogisticPersonalProvider=({navigation, orderInfo, setOrdeInfo})=>{
                     navigation.navigate('PersonalHome')
                 }}
             />
-            <StyeledSearchbarwithIcon>
-                <AntDesign name="adduser" size={24} color="white" />
+            <StyeledSearchbarwithIcon
+                onPress={()=>{
+                    navigation.navigate('merchanRegister')
+                }}
+            >
+                <MaterialIcons name="add-business" size={24} color="white" />
             </StyeledSearchbarwithIcon>
         </View>
         <View style={theme.containerView}>

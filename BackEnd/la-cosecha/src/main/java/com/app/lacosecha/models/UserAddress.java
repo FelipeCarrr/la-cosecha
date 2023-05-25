@@ -3,6 +3,7 @@ package com.app.lacosecha.models;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Data
 @Entity
@@ -18,8 +19,15 @@ public class UserAddress {
     @Column(name = "user_address_name", length = 45, nullable = false)
     private String user_address_name;
 
-    @Column(name = "user_address_address", length = 45, nullable = false)
-    private String user_address_address;
+    @Column(name = "user_address_kind_street", length = 45, nullable = false)
+    private String user_address_kind_street;
+
+    @Column(name = "user_address_number_street", length = 45, nullable = false)
+    private String user_address_number_street;
+    @Column(name = "user_address_first_number_house_street", length = 45, nullable = false)
+    private String user_address_first_number_house_street;
+    @Column(name = "user_address_second_number_house_street", length = 45, nullable = false)
+    private String user_address_second_number_house_street;
 
     @Column(name = "user_address_indication", length = 100, nullable = false)
     private String user_address_indication;
@@ -29,9 +37,9 @@ public class UserAddress {
     private States states_id;
 
     @Column(name = "created_at", nullable = false)
-    private String created_at;
+    private Date created_at;
 
     @Column(name = "updated_at", nullable = false)
-    private String  updated_at;
+    private Date  updated_at;
 
 }

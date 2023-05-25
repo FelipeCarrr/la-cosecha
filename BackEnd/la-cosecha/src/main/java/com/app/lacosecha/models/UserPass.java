@@ -27,8 +27,8 @@ public class UserPass {
     private States states_id;
 
     @Column(name = "created_at", nullable = false)
-    private String created_at;
+    private Date created_at;
 
     @Column(name = "updated_at", nullable = false)
-    private String updated_at;
+    private Date updated_at;
 }

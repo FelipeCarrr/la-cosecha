@@ -79,8 +79,8 @@ const StyledSelectDropdown =({style={},...props})=>{
                 }
                 renderDropdownIcon={() => {
                     
-                    //return <FontAwesome name={isOpened ? 'chevron-down' : 'chevron-down'} color={'#444'} size={18} />;
-                    return <Feather name="shopping-bag" size={18} color={theme.colors.primary} />
+                    return <FontAwesome name={isOpened ? 'chevron-up' : 'chevron-down'} color={'#444'} size={18} />;
+                    
                 }}
                 {...styles.propsStyles}
                 style={styledSelect} 

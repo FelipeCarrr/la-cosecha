@@ -22,16 +22,16 @@ public class User {
     private String user_name;
 
     @Column(name = "user_phone", length = 10, nullable = false, unique = true)
-    private String user_phone;
+    private String userPhone;
 
     @Column(name = "user_second_phone", length = 10, nullable = true)
     private String user_second_phone;
 
     @Column(name = "created_at", nullable = false)
-    private String created_at;
+    private Date created_at;
 
     @Column(name = "updated_at", nullable = false)
-    private String updated_at;
+    private Date updated_at;
 
     @ManyToOne
     @JoinColumn(name = "states_id")

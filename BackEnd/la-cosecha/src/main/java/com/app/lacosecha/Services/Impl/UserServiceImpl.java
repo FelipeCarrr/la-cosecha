@@ -44,7 +44,7 @@ public class UserServiceImpl implements UserService {
             User userBD = userRepository.findById(id).get();
             userBD.setRol_id(user.getRol_id());
             userBD.setUser_name(user.getUser_name());
-            userBD.setUser_phone(user.getUser_phone());
+            userBD.setUserPhone(user.getUserPhone());
             userBD.setUser_second_phone(user.getUser_second_phone());
             userBD.setStates_id(user.getStates_id());
             userBD.setUpdated_at(user.getUpdated_at());

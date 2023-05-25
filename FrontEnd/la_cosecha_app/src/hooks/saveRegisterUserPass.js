@@ -1,3 +1,4 @@
+import moment from "moment/moment";
 import api from "../ApiData"
 
 const saveRegisterUserPass=(dataUser,userId)=>{
@@ -18,8 +19,8 @@ const saveRegisterUserPass=(dataUser,userId)=>{
                 states_id:{
                     states_id:1
                 },
-                created_at:Date(),
-                updated_at:Date()
+                created_at:moment().format('YYYY-MM-DD'),
+                updated_at:moment().format('YYYY-MM-DD')
             }),
         })
         const json =await res.json();

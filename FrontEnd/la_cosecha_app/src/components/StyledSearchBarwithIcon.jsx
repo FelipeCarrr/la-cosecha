@@ -53,6 +53,7 @@ const StyeledSearchbarwithIcon=({style={},children,...props})=>{
                 style={styles.ripple}
                 rippleDuration={600}
                 rippleContainerBorderRadius={10}
+                {...props}
             >
                 <View style={styles.icon}>
                     {children}

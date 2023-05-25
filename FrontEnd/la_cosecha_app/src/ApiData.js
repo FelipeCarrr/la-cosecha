@@ -8,7 +8,11 @@ const api={
         savedUser:domain+'/user/'
     },
     auth:{
-        savedPassword:domain+'/auth/'
+        savedPassword:domain+'/auth/',
+        login:domain+'/auth/login'
+    },
+    address:{
+        savedAddress:domain+'/address/'
     }
 
 }

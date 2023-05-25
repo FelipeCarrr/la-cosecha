@@ -3,8 +3,10 @@ package com.app.lacosecha.controllers;
 import com.app.lacosecha.Services.UserAddressService;
 import com.app.lacosecha.models.User;
 import com.app.lacosecha.models.UserAddress;
+import com.app.lacosecha.repository.UserRepository;
 import com.app.lacosecha.utils.ApiResponse;
 import com.app.lacosecha.utils.Constants;
+import com.app.lacosecha.utils.JWTUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,6 +14,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
+
+import static org.apache.tomcat.util.buf.Ascii.parseLong;
 
 @CrossOrigin(origins = "*")
 @RestController
@@ -20,6 +25,12 @@ public class UserAddressController {
 
     @Autowired
     private UserAddressService userAddressService;
+
+    @Autowired
+    private JWTUtil jwtUtil;
+
+    @Autowired
+    private UserRepository userRepository;
 
     private ApiResponse apiResponse;
     Map data= new HashMap();
@@ -40,7 +51,9 @@ public class UserAddressController {
     public ResponseEntity savedUserAddres(@RequestBody UserAddress userAddress){
         Boolean res = userAddressService.createUserAddress(userAddress);
         if(res==true){
-            apiResponse = new ApiResponse(Constants.REGISTER_CREATED,"");
+            Optional<User> userDB=userRepository.findById(userAddress.getUserId().getUserId());
+            data.put("token",jwtUtil.create(String.valueOf(userDB.get().getUserId()),userDB.get().getUserPhone()));
+            apiResponse = new ApiResponse(Constants.REGISTER_CREATED,data);
             return new ResponseEntity(apiResponse, HttpStatus.CREATED) ;
         }else{
             apiResponse = new ApiResponse(Constants.REGISTER_BAD,"");

@@ -6,7 +6,7 @@ import StyledButtonText from "../../components/StyledButtonText";
 import { useNavigation } from "@react-navigation/native";
 import theme from "../../theme";
 
-const RegisterAddressInitial=({route})=>{
+const RegisterAddressInitial=({route, isLogin, setIsLogin,isBuyer,setIsBuyer,isLogistic,setIsLogistic,isMerchant, setISMerchant})=>{
     const navigation=useNavigation();
     return(
         <ScrollView>
@@ -26,7 +26,11 @@ const RegisterAddressInitial=({route})=>{
                     alignContent:'center'}}>
                     Vamos a agregar un domicilio
                 </StyledTextLogin>
-                <InputsDomicile dataUser={route.params}/>
+                <InputsDomicile dataUser={route.params} isLogin={isLogin} setIsLogin={setIsLogin}
+                isBuyer={isBuyer} setIsBuyer={setIsBuyer} 
+                isLogistic={isLogistic} setIsLogistic={setIsLogistic}
+                isMerchant={isMerchant} setISMerchant={setISMerchant}
+                />
                 
             </View>
         </ScrollView>

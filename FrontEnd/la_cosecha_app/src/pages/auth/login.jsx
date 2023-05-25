@@ -9,7 +9,7 @@ import theme from "../../theme";
 
 
 
-const Login =()=>{
+const Login =({isLogin, setIsLogin,isBuyer,setIsBuyer,isLogistic,setIsLogistic,isMerchant, setISMerchant})=>{
     const navigation=useNavigation();
     return(
         <ScrollView>
@@ -18,7 +18,12 @@ const Login =()=>{
                 <StyledTextLogin>
                     Iniciar Sesión
                 </StyledTextLogin>
-                <InputsLogin/>
+                <InputsLogin
+                isLogin={isLogin} setIsLogin={setIsLogin}
+                isBuyer={isBuyer} setIsBuyer={setIsBuyer} 
+                isLogistic={isLogistic} setIsLogistic={setIsLogistic}
+                isMerchant={isMerchant} setISMerchant={setISMerchant}
+                />
                 <View style={styles.style}>
                     <StyledButtonText>
                         Olvide mi Contraseña
