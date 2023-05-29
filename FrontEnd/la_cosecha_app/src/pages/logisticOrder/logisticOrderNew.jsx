@@ -4,10 +4,12 @@ import Ripple from "react-native-material-ripple";
 import StyledCardOrderNew from "../../components/StyledCardOrderNew";
 import { useFocusEffect } from '@react-navigation/native';
 import theme from "../../theme";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const LogisticOrderNew=({navigation,orderInfo, setOrdeInfo})=>{
     useFocusEffect(() => {
         setOrdeInfo(false);
+        console.log( AsyncStorage.getItem('center'));
       });
     navigation.is
     return(

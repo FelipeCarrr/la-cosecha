@@ -3,14 +3,18 @@ import { useState } from "react";
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Feather } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { EvilIcons } from '@expo/vector-icons';
 import theme from "../../theme";
 import TabsTopHomeLogistic from "./order/TabsTopHomeLogistic";
 import StackPersonalHome from "./personal/StackPersonalHome";
+import LogisticInventary from "../../pages/logisticInventary";
+import ChangeCenter from "../../pages/changeCenter";
 
 
 const LogisticTabNavigator=createBottomTabNavigator();
 
-export default function TabsLogistic({isLogin, setIsLogin,isBuyer,setIsBuyer,isLogistic,setIsLogistic,isMerchant, setISMerchant}){
+export default function TabsLogistic({isLogin, setIsLogin,isBuyer,setIsBuyer,isLogistic,setIsLogistic,isMerchant, setISMerchant,selectedCenter, setSelectedCenter}){
     const [orderInfo, setOrdeInfo] = useState(false);
     return(
         <LogisticTabNavigator.Navigator
@@ -25,6 +29,20 @@ export default function TabsLogistic({isLogin, setIsLogin,isBuyer,setIsBuyer,isL
             }}
             
         >
+            <LogisticTabNavigator.Screen
+                name="inventary" 
+                options={{
+                    tabBarLabel:'Inventario',
+                    tabBarIcon:({color})=>(
+                        <MaterialCommunityIcons name="warehouse" size={24} color={color} />
+                    ),
+                    headerShown:false,
+                }}
+            >
+                {(props)=>(
+                    <LogisticInventary />
+                )}
+            </LogisticTabNavigator.Screen>
             <LogisticTabNavigator.Screen
                 name="pedidos" 
                 options={{
@@ -55,7 +73,22 @@ export default function TabsLogistic({isLogin, setIsLogin,isBuyer,setIsBuyer,isL
                                             isBuyer={isBuyer} setIsBuyer={setIsBuyer} 
                                             isLogistic={isLogistic} setIsLogistic={setIsLogistic}
                                             isMerchant={isMerchant} setISMerchant={setISMerchant}
+                                            selecteCenter={selectedCenter} setSelectedCenter={setSelectedCenter}
                     />
+                )}
+            </LogisticTabNavigator.Screen>
+            <LogisticTabNavigator.Screen
+                name="changeCenter"
+                options={{
+                    tabBarLabel:'Centro',
+                    tabBarIcon:({color})=>(
+                        <EvilIcons name="location" size={30} color={color} />
+                    ),
+                    headerShown:false
+                }}
+            >
+                {(props)=>(
+                    <ChangeCenter istab={true} selecteCenter={selectedCenter} setSelectedCenter={setSelectedCenter}/>
                 )}
             </LogisticTabNavigator.Screen>
         </LogisticTabNavigator.Navigator>

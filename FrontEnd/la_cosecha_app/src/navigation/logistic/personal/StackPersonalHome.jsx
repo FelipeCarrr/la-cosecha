@@ -8,7 +8,7 @@ import LogisticPersonalDelivery from "../../../pages/logisticPersonal/logisticPe
 
 const stackProvider=createNativeStackNavigator();
 
-export default function StackPersonalHome({orderInfo, setOrdeInfo, isLogin, setIsLogin,isBuyer,setIsBuyer,isLogistic,setIsLogistic,isMerchant, setISMerchant}){
+export default function StackPersonalHome({orderInfo, setOrdeInfo, isLogin, setIsLogin,isBuyer,setIsBuyer,isLogistic,setIsLogistic,isMerchant, setISMerchant, selectedCenter, setSelectedCenter}){
     return(
         <stackProvider.Navigator
             initialRouteName="PersonalHome"
@@ -29,6 +29,7 @@ export default function StackPersonalHome({orderInfo, setOrdeInfo, isLogin, setI
                     isBuyer={isBuyer} setIsBuyer={setIsBuyer} 
                     isLogistic={isLogistic} setIsLogistic={setIsLogistic}
                     isMerchant={isMerchant} setISMerchant={setISMerchant} 
+                    selecteCenter={selectedCenter} setSelectedCenter={setSelectedCenter}
                     />
                 )}
             </stackProvider.Screen>

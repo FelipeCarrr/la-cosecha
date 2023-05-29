@@ -1,8 +1,11 @@
 import { initializeApp } from 'firebase/app';
 import { getStorage,ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
-import saveProductLot from './saveProductLot';
+import saveRegisterUser from './saveRegisterUser';
+import saveRegisterUserPass from './saveRegisterUserPass';
+import saveRegisterUserAddres from './saveRegisterAddressUser';
+import saveMerchantProvider from './saveMerchantProvider';
 
-const uploadPhoto=async (file,values)=>{
+const uploadPhotoMerchant=async (file,values,{setIsDisabled, setIsShowAlertProgress,setIsShowAlertSuccess,setRes})=>{
     const name=Math.floor(Math.random() * 1000000);
     const firebaseConfig = {
         apiKey: "AIzaSyC4ahR6EpTuZ8EwPbYk73a-4LGbVUoEPKQ",
@@ -47,11 +50,18 @@ const uploadPhoto=async (file,values)=>{
    () => {
     getDownloadURL(uploadTask.snapshot.ref).then(async (downloadURL) => {
       console.log('File available at', downloadURL);
-      const res=await saveProductLot(values,downloadURL);
-      console.log(res);
+      const user=await saveRegisterUser(values,3);
+      const pass = await saveRegisterUserPass(values, user.data);
+      const address = await saveRegisterUserAddres(values, user.data);
+      const provider =await saveMerchantProvider(values,user.data,downloadURL);
+      setIsDisabled(false);
+      setRes(address.message);
+      setIsShowAlertProgress(false);
+      setIsShowAlertSuccess(true);
+      console.log(address);
     });
   }
 );
 }
 
-export default uploadPhoto;
+export default uploadPhotoMerchant;

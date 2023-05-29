@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useState} from "react";
 import { Formik} from "formik";
 import {View} from "react-native";
 import { Text } from "react-native-paper";
@@ -10,6 +10,8 @@ import saveRegisterUserPass from "../hooks/saveRegisterUserPass.js";
 import saveRegisterUserAddres from "../hooks/saveRegisterAddressUser.js";
 import { addressValidationSchema } from "../validationSchemas/address.js";
 import loginStorage from "../hooks/loginStorage.js";
+import AlertProgress from "./AlertProgress.jsx";
+import AlertSuccess from "./AlertSuccess.jsx";
 
 
 const kindStreet=["Calle","Carrera"];
@@ -25,12 +27,28 @@ const initialsValues ={
 
 
 export default function InputsDomicile({dataUser, isLogin, setIsLogin, isBuyer,setIsBuyer,isLogistic,setIsLogistic,isMerchant, setISMerchant}){
+    const [progress, setProgresss]=useState(false)
+    const [succes, setSuccess]=useState(false);
+    const [res,setRes]=useState(null);
+
+    const hideAlertSuccess=()=>{
+        setSuccess(false);
+    }
+
     return (
         <Formik  validationSchema={addressValidationSchema} initialValues={initialsValues} onSubmit={(async values=>{
+            setProgresss(true);
             const user= await saveRegisterUser(dataUser,1);
             const pass=await saveRegisterUserPass(dataUser,user.data);
             const address=await saveRegisterUserAddres(values,user.data);
-            const login=await loginStorage(address.data.token,user.data,1,{isLogin,setIsLogin,isBuyer,setIsBuyer,isLogistic,setIsLogistic,isMerchant, setISMerchant});
+            setRes(address.message);
+            if(address.message=='Registro creado'){
+                const login=await loginStorage(address.data.token,user.data,1,{isLogin,setIsLogin,isBuyer,setIsBuyer,isLogistic,setIsLogistic,isMerchant, setISMerchant});
+            }else{
+                setProgresss(false);
+                setSuccess(true);
+            }
+
             console.log(address);
             })}>
             {({handleChange,handleSubmit})=>{
@@ -91,7 +109,17 @@ export default function InputsDomicile({dataUser, isLogin, setIsLogin, isBuyer,s
                             returnKeyTap="ok"
                         />
                         
-                        <StyledButton style={{marginTop:10}} onPress={handleSubmit} title={'Registrarme'}/>   
+                        <StyledButton style={{marginTop:10}} onPress={()=>{handleSubmit()}} title={'Registrarme'}/>
+                        {progress?<AlertProgress showAlert={progress}/>:null}
+                        <AlertSuccess showAlert={succes} 
+                            title={res}
+                            onConfirmPressed={() => {
+                                hideAlertSuccess();
+                            }}
+                            onDismiss={()=>{
+                                hideAlertSuccess();
+                            }}
+                        />   
                     </View>               
                     )
             }}

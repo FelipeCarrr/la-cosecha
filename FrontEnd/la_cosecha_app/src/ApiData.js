@@ -17,6 +17,11 @@ const api={
     productLot:{
         saveProductLot:domain+'/productLot',
         getProductLot:domain+'/productLot',
+        getProductByProvider:domain+'/productLot/provider',
+    },
+    provider:{
+        saveProvider:domain+'/provider',
+        getProvider:domain+'/provider'
     }
 
 }

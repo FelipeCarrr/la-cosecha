@@ -12,15 +12,22 @@ import { FontAwesome } from '@expo/vector-icons';
 import { Entypo } from '@expo/vector-icons';
 import StyledButton from "./StyledButton";
 import theme from "../theme";
-import uploadPhoto from "../hooks/firebaseConfig";
-import saveProductLot from "../hooks/saveProductLot";
+import uploadPhoto from "../hooks/UploadPhotoProduct";
+import AlertProgress from "./AlertProgress";
+import AlertSuccess from "./AlertSuccess";
 
 
-
-const InputsProductRegister =()=>{
+const InputsProductRegister =({providerId})=>{
      
     const [image,setImage]=useState('https://placehold.co/300');
     const [isModalVisible, setIsModalVisible] = useState(false);
+    const [progress,setProgress]=useState(false);
+    const [success,setSuccess]=useState(false);
+    const [res,setRes]=useState(null);
+
+    const hideAlertSuccess=()=>{
+        setSuccess(false);
+    }
 
     const onModalClose = () => {
         setIsModalVisible(false);
@@ -65,11 +72,8 @@ const InputsProductRegister =()=>{
     }
     return(
         <Formik initialValues={initialValues} onSubmit={( values=>{
-            uploadPhoto(image,values);
-
-            
-            // saveProductLot(values,URL);
-            // console.log(product);
+            setProgress(true)
+            uploadPhoto(image,values,providerId,{setProgress,setSuccess,setRes});
         })}>
             {({handleChange,handleSubmit})=>{
                 return(
@@ -138,7 +142,9 @@ const InputsProductRegister =()=>{
                                 keyboardType="name-phone-pad"
                                 returnKeyTap="ok"
                             />
-                            <StyledButton onPress={handleSubmit} title={'Publicar'}/>
+                            <StyledButton onPress={()=>{
+                                handleSubmit();
+                            }} title={'Publicar'}/>
                         <ModalImagePicker isVisible={isModalVisible} onClose={onModalClose}>
                             
                                 <Ripple
@@ -167,6 +173,16 @@ const InputsProductRegister =()=>{
                                 </Ripple>
                             
                         </ModalImagePicker>
+                        {progress?<AlertProgress showAlert={progress}/>:null}
+                        <AlertSuccess showAlert={success} 
+                            title={res}
+                            onConfirmPressed={() => {
+                                hideAlertSuccess();
+                            }}
+                            onDismiss={()=>{
+                                hideAlertSuccess();
+                            }}
+                        />
                     </View>
                     
                 )

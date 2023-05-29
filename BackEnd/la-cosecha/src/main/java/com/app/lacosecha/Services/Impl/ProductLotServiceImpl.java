@@ -2,6 +2,7 @@ package com.app.lacosecha.Services.Impl;
 
 import com.app.lacosecha.Services.ProducLotService;
 import com.app.lacosecha.models.ProductLot;
+import com.app.lacosecha.models.Provider;
 import com.app.lacosecha.repository.ProductLotRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -39,6 +40,16 @@ public class ProductLotServiceImpl implements ProducLotService {
     public Optional<ProductLot> getProductAll(Long id) {
         try{
             return productLotRepository.findById(id);
+        }catch (Exception e){
+            System.out.println(e);
+            return null;
+        }
+    }
+
+    @Override
+    public List<ProductLot> getProductByProvider(Provider provider) {
+        try{
+            return productLotRepository.findByProviderId(provider);
         }catch (Exception e){
             System.out.println(e);
             return null;

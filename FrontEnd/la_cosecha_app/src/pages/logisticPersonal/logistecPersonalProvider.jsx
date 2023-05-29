@@ -6,6 +6,7 @@ import { useFocusEffect } from '@react-navigation/native';
 import StyledButtonBack from "../../components/StyleButtonBack";
 import StyeledSearchbarwithIcon from "../../components/StyledSearchBarwithIcon";
 import { MaterialIcons } from '@expo/vector-icons';
+import StyledCardProviderList from "../../components/StyledCardProviderList";
 
 
 const LogisticPersonalProvider=({navigation, orderInfo, setOrdeInfo})=>{
@@ -39,7 +40,7 @@ const LogisticPersonalProvider=({navigation, orderInfo, setOrdeInfo})=>{
             </StyeledSearchbarwithIcon>
         </View>
         <View style={theme.containerView}>
-            
+            <StyledCardProviderList/>
         </View>
         </>
     )

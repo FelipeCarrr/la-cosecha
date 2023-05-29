@@ -6,6 +6,7 @@ import TabsLogistic from "./navigation/logistic/TabsLogistic";
 import TabsBottomMerchant from "./navigation/merchant/TabsBottomMerchant";
 import BottomTabsBuyer from "./navigation/buyer/BottomTabsBuyer";
 import Splash from "./pages/splash"
+import ChangeCenter from "./pages/changeCenter";
 
 
 const MyTheme={
@@ -24,10 +25,11 @@ export default function Main() {
     const [isLogin, setIsLogin]=useState(false);
     const [isBuyer,setIsBuyer]=useState(false);
     const [isLogistic,setIsLogistic]=useState(false);
+    const [selectedCenter, setSelectedCenter]=useState(false);
     const [isMerchant, setISMerchant]=useState(false);
 
     useEffect(()=>{
-        stateLogin({isLogin, setIsLogin,isBuyer,setIsBuyer,isLogistic,setIsLogistic,isMerchant, setISMerchant}).then(()=>{setIsLoading(false)})
+        stateLogin({isLogin, setIsLogin,isBuyer,setIsBuyer,isLogistic,setIsLogistic,isMerchant, setISMerchant, selectedCenter, setSelectedCenter}).then(()=>{setIsLoading(false)})
     },[])
 
     
@@ -41,20 +43,24 @@ export default function Main() {
                                 isBuyer={isBuyer} setIsBuyer={setIsBuyer} 
                                 isLogistic={isLogistic} setIsLogistic={setIsLogistic}
                                 isMerchant={isMerchant} setISMerchant={setISMerchant}
+                                selecteCenter={selectedCenter} setSelectedCenter={setSelectedCenter}
                             />
-                          : isLogistic ? <TabsLogistic
-                                            isLogin={isLogin} setIsLogin={setIsLogin} 
-                                            isBuyer={isBuyer} setIsBuyer={setIsBuyer} 
-                                            isLogistic={isLogistic} setIsLogistic={setIsLogistic}
-                                            isMerchant={isMerchant} setISMerchant={setISMerchant}
-                                        />
-                                       : isMerchant ? <TabsBottomMerchant
+                          : isLogistic ? selectedCenter ?<TabsLogistic
                                                         isLogin={isLogin} setIsLogin={setIsLogin} 
-                                                                isBuyer={isBuyer} setIsBuyer={setIsBuyer} 
-                                                                isLogistic={isLogistic} setIsLogistic={setIsLogistic}
-                                                                isMerchant={isMerchant} setISMerchant={setISMerchant}
-                                                        />
-                                                    : <StackLogin isLogin={isLogin} setIsLogin={setIsLogin}/>
+                                                        isBuyer={isBuyer} setIsBuyer={setIsBuyer} 
+                                                        isLogistic={isLogistic} setIsLogistic={setIsLogistic}
+                                                        isMerchant={isMerchant} setISMerchant={setISMerchant}
+                                                        selecteCenter={selectedCenter} setSelectedCenter={setSelectedCenter}
+                                                        
+                                                    />
+                                                : <ChangeCenter istab={false} selecteCenter={selectedCenter} setSelectedCenter={setSelectedCenter}/> :isMerchant ? <TabsBottomMerchant
+                                                                    isLogin={isLogin} setIsLogin={setIsLogin} 
+                                                                            isBuyer={isBuyer} setIsBuyer={setIsBuyer} 
+                                                                            isLogistic={isLogistic} setIsLogistic={setIsLogistic}
+                                                                            isMerchant={isMerchant} setISMerchant={setISMerchant}
+                                                                            selecteCenter={selectedCenter} setSelectedCenter={setSelectedCenter}
+                                                                    />
+                                                                : <StackLogin isLogin={isLogin} setIsLogin={setIsLogin}/>
                 :<StackLogin isLogin={isLogin} setIsLogin={setIsLogin} 
                     isBuyer={isBuyer} setIsBuyer={setIsBuyer} 
                     isLogistic={isLogistic} setIsLogistic={setIsLogistic}

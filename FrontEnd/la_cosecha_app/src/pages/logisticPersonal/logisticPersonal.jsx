@@ -11,7 +11,7 @@ import logout from "../../hooks/logout";
 
 
 
-const LogisticPersonal=({navigation, orderInfo, setOrdeInfo, isLogin, setIsLogin,isBuyer,setIsBuyer,isLogistic,setIsLogistic,isMerchant, setISMerchant})=>{
+const LogisticPersonal=({navigation, orderInfo, setOrdeInfo, isLogin, setIsLogin,isBuyer,setIsBuyer,isLogistic,setIsLogistic,isMerchant, setISMerchant, selectedCenter, setSelectedCenter})=>{
     useIsFocused(()=>{
         setOrdeInfo(false);
     })
@@ -30,7 +30,7 @@ const LogisticPersonal=({navigation, orderInfo, setOrdeInfo, isLogin, setIsLogin
                     <MaterialCommunityIcons name="truck-fast" size={24} color="white" />
                 </StyledListOptionsWithIcons>
                 <StyledListOptionsWithIcons title={'Cerrar sesion'} onPress={()=>{
-                logout({isLogin, setIsLogin,isBuyer,setIsBuyer,isLogistic,setIsLogistic,isMerchant, setISMerchant})
+                logout({isLogin, setIsLogin,isBuyer,setIsBuyer,isLogistic,setIsLogistic,isMerchant, setISMerchant,selectedCenter, setSelectedCenter})
                 }}>
                     <SimpleLineIcons name="logout" size={24} color="white" />
                 </StyledListOptionsWithIcons>

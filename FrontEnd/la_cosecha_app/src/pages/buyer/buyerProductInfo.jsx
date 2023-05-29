@@ -17,7 +17,7 @@ const BuyerProductInfo=({route})=>{
     },[])
     return(
         <View style={theme.containerView}>
-            <StyledViewProduct data={productInfo? productInfo:[]}/>
+            <StyledViewProduct data={productInfo? productInfo:null}/>
         </View>
     )
 }

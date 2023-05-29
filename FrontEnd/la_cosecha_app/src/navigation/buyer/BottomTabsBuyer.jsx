@@ -12,7 +12,7 @@ import BuyerMyShopping from "../../pages/buyer/buyerMyShopping";
 
 const bottomTabs=createBottomTabNavigator();
 
-export default function BottomTabsBuyer ({isLogin, setIsLogin,isBuyer,setIsBuyer,isLogistic,setIsLogistic,isMerchant, setISMerchant}){
+export default function BottomTabsBuyer ({isLogin, setIsLogin,isBuyer,setIsBuyer,isLogistic,setIsLogistic,isMerchant, setISMerchant,selectedCenter,setSelectedCenter}){
     const [fullHeight,setFullHeight]=useState(false)
     return(
         <bottomTabs.Navigator
@@ -42,6 +42,7 @@ export default function BottomTabsBuyer ({isLogin, setIsLogin,isBuyer,setIsBuyer
                         isBuyer={isBuyer} setIsBuyer={setIsBuyer} 
                         isLogistic={isLogistic} setIsLogistic={setIsLogistic}
                         isMerchant={isMerchant} setISMerchant={setISMerchant}
+                        selecteCenter={selectedCenter} setSelectedCenter={setSelectedCenter}
                     />
                 )}
             </bottomTabs.Screen>

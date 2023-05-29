@@ -6,21 +6,21 @@ import InputsProductRegister from "../../components/InputsProductRegister";
 import StyledTextLogin from "../../components/StyledTextTitle";
 import theme from "../../theme";
 
-const MerchantInventaryAdd=({navigation,fullHeight,setFullHeight})=>{
+const MerchantInventaryAdd=({navigation,route,orderInfo, setOrdeInfo})=>{
     useLayoutEffect(() => {
-        setFullHeight(true);
+        setOrdeInfo(true);
       }, [navigation]);
     return(
         <ScrollView>
             <View style={theme.containerView}>
                 <StyledButtonBack onPress={()=>{
-                    setFullHeight(true);
-                    navigation.navigate('InventaryHome')
+                    setOrdeInfo(false);
+                    navigation.goBack()
                 }}/>
                 <StyledTextLogin>
                         Registrar Producto
                 </StyledTextLogin>
-                <InputsProductRegister/>
+                <InputsProductRegister providerId={route.params.providerId}/>
             </View>
         </ScrollView>
     )

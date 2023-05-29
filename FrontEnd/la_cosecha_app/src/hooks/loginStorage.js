@@ -1,7 +1,7 @@
 import React from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const loginStorage=async (token,userId,rolId,{isLogin, setIsLogin,isBuyer,setIsBuyer,isLogistic,setIsLogistic,isMerchant, setISMerchant})=>{
+const loginStorage=async (token,userId,rolId,{isLogin, setIsLogin,isBuyer,setIsBuyer,isLogistic,setIsLogistic,isMerchant, setISMerchant,})=>{
     try {
 
         await AsyncStorage.setItem('token', token);
@@ -11,18 +11,21 @@ const loginStorage=async (token,userId,rolId,{isLogin, setIsLogin,isBuyer,setIsB
         const token1 =await AsyncStorage.getItem('token');
         const user = await AsyncStorage.getItem('userId');
         const rol = await AsyncStorage.getItem('rolId');
+
         console.log('{ token:'+token1+' user:'+user+' rol'+rol+'}');
 
         setIsLogin(true);
 
         if(rolId==1){
-            setIsBuyer(true)
+            setIsBuyer(true);
         }
         if(rolId==2){
-            setIsLogistic(true)
+            setIsLogistic(true);
+            
+            
         }
         if(rolId==3){
-            setISMerchant(true)
+            setISMerchant(true);
         }
     } catch (e) {
         console.log(e);

@@ -2,6 +2,7 @@ package com.app.lacosecha.controllers;
 
 import com.app.lacosecha.Services.ProducLotService;
 import com.app.lacosecha.models.ProductLot;
+import com.app.lacosecha.models.Provider;
 import com.app.lacosecha.models.User;
 import com.app.lacosecha.models.UserAddress;
 import com.app.lacosecha.utils.ApiResponse;
@@ -55,6 +56,18 @@ public class ProductLotController {
             apiResponse = new ApiResponse(Constants.USER_FOUND,producLotService.getProductAll(id));
             return new ResponseEntity(apiResponse, HttpStatus.OK) ;
         } catch (Exception e) {
+            apiResponse = new ApiResponse(Constants.USER_NOT_FOUND,"");
+            return new ResponseEntity(apiResponse, HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @PostMapping(value="/provider")
+    public ResponseEntity getProductByProvider(@RequestBody Provider provider) {
+        try {
+            apiResponse = new ApiResponse(Constants.USER_FOUND,producLotService.getProductByProvider(provider));
+            return new ResponseEntity(apiResponse, HttpStatus.OK) ;
+        } catch (Exception e) {
+            System.out.println(e);
             apiResponse = new ApiResponse(Constants.USER_NOT_FOUND,"");
             return new ResponseEntity(apiResponse, HttpStatus.NOT_FOUND);
         }

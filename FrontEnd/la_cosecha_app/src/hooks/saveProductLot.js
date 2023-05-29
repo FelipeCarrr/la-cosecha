@@ -2,8 +2,8 @@ import moment from "moment/moment";
 import api from "../ApiData"
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-const saveProductLot=(data,url)=>{
-
+const saveProductLot=(data,url,providerId)=>{
+    console.log(providerId);
     const fetchregister=async()=>{
         const userId=await AsyncStorage.getItem('userId');
         const res= await globalThis.fetch(api.productLot.saveProductLot, {
@@ -18,8 +18,8 @@ const saveProductLot=(data,url)=>{
                 product_lot_price:data.productPrice,
                 product_lot_cant:data.productCant,
                 product_lot_foto:url,
-                userId:{
-                    userId:userId
+                providerId:{
+                    providerId:providerId
                 },
                 states_id:{
                     states_id:1

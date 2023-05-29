@@ -5,7 +5,6 @@ import { ScrollView, View } from "react-native";
 import StyledButtonBack from "../../components/StyleButtonBack";
 import StyledTextLogin from "../../components/StyledTextTitle";
 import InputsMerchant from "../../components/InputsMerchant";
-import InputsDomicile from "../../components/InputsDomicile";
 
 
 const LogistecMerchanRegister=({navigation, orderInfo, setOrdeInfo})=>{

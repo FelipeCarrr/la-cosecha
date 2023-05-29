@@ -10,7 +10,7 @@ import java.util.Date;
 public class ProductLot {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long product_id;
+    private long productId;
 
     @Column(name = "product_lot_name", length = 45, nullable = false)
     private String product_lot_name;
@@ -38,7 +38,7 @@ public class ProductLot {
     private Date  updated_at;
 
     @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
-    private User userId;
+    @JoinColumn(name = "provider_id", nullable = false)
+    private Provider providerId;
 
 }

@@ -11,7 +11,7 @@ import StackInventary from "./inventary/StackInventary";
 
 const bottomTabs=createBottomTabNavigator();
 
-export default function TabsBottomMerchant ({isLogin, setIsLogin,isBuyer,setIsBuyer,isLogistic,setIsLogistic,isMerchant, setISMerchant}){
+export default function TabsBottomMerchant ({isLogin, setIsLogin,isBuyer,setIsBuyer,isLogistic,setIsLogistic,isMerchant, setISMerchant, selectedCenter, setSelectedCenter}){
     const [fullHeight,setFullHeight]=useState(false)
     return(
         <bottomTabs.Navigator
@@ -63,10 +63,12 @@ export default function TabsBottomMerchant ({isLogin, setIsLogin,isBuyer,setIsBu
                 }}
             >
                 {(props) => (
-                    <MerchantAccount{...props} isLogin={isLogin} setIsLogin={setIsLogin} 
+                    <MerchantAccount {...props} isLogin={isLogin} setIsLogin={setIsLogin} 
                     isBuyer={isBuyer} setIsBuyer={setIsBuyer} 
                     isLogistic={isLogistic} setIsLogistic={setIsLogistic}
-                    isMerchant={isMerchant} setISMerchant={setISMerchant}/>
+                    isMerchant={isMerchant} setISMerchant={setISMerchant}
+                    selecteCenter={selectedCenter} setSelectedCenter={setSelectedCenter}
+                    />
                 )}
             </bottomTabs.Screen>
         </bottomTabs.Navigator>

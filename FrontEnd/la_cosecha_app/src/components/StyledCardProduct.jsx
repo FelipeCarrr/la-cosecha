@@ -6,6 +6,7 @@ import { Feather } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
+import { Image } from 'expo-image';
 
 
 
@@ -44,22 +45,7 @@ const styles=StyleSheet.create({
     
 })
 
-const leftContent=()=> {
-    return(
-        <View style={{
-            backgroundColor:theme.colors.primary,
-            flexDirection:'row',
-            justifyContent:'center',
-            alignItems:'center',
-            height:40,
-            borderRadius:10
-            }}
-        >
-            <MaterialIcons name="storefront" size={24} color="white" />
-        </View>
-    )
-    
-}
+
 
 const StyledCardProduct= ({style={},...props}) => {
     const navigation=useNavigation();
@@ -67,7 +53,25 @@ const StyledCardProduct= ({style={},...props}) => {
         ...styles.Card,
         ...style
     }
-
+    const leftContent=()=> {
+        return(
+            <View style={{
+                backgroundColor:theme.colors.primary,
+                flexDirection:'row',
+                justifyContent:'center',
+                alignItems:'center',
+                height:40,
+                borderRadius:15
+                }}
+            >
+                <Image
+                    style={{width:40,height:40,borderRadius:10}}
+                    source={{uri: props.providerId.providerPhoto}}
+                />
+            </View>
+        )
+        
+    }
     return (
         <Ripple
             rippleColor={theme.colors.primary}
@@ -85,7 +89,7 @@ const StyledCardProduct= ({style={},...props}) => {
             }}
         >
         <Card style={styleCard} {...props}>
-            <Card.Title title="Papas a la vaticana" left={leftContent} titleStyle={{color:'grey', fontWeight:'bold', fontSize:20}} />
+            <Card.Title title={props.providerId.providerNameEnterprise} left={leftContent} titleStyle={{color:'grey', fontWeight:'bold', fontSize:20}} />
             <Card.Content>
                 <Card.Cover source={{ uri: props.product_lot_foto }} />
                 <View style={styles.title}>

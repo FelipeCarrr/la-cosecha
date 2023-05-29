@@ -1,5 +1,6 @@
 import React from "react";
-import { StyleSheet,Text, Pressable, TouchableHighlight } from "react-native";
+import { StyleSheet,Text,View } from "react-native";
+import Ripple from "react-native-material-ripple";
 import theme from "../theme";
 
 const styles= StyleSheet.create({
@@ -10,7 +11,8 @@ const styles= StyleSheet.create({
         paddingHorizontal: 32,
         borderRadius: 20,
         elevation: 5,
-        marginBottom:10
+        marginBottom:0,
+        backgroundColor:theme.colors.primary
       },
       text: {
         fontSize: 16,
@@ -19,6 +21,9 @@ const styles= StyleSheet.create({
         letterSpacing: 0.25,
         color: 'white',
       },
+      ripple:{
+        marginBottom:10
+      }
 });
 
 
@@ -30,12 +35,15 @@ const StyledButton =({style ={}, ...props})=>{
         ...style
     }
     return (
-            <Pressable style={({pressed})=>[{
-                backgroundColor: pressed ? theme.colors.primaryDark : theme.colors.primary,
-                },buttonStyles
-                ]} {...props}>
-                <Text style={styles.text} {...props}>{props.title}</Text>
-            </Pressable>
+            <Ripple 
+            rippleDuration={800}
+            rippleContainerBorderRadius={20}
+            style={styles.ripple}
+            {...props}>
+                <View style={styles.button}>
+                    <Text style={styles.text} {...props}>{props.title}</Text>
+                </View>
+            </Ripple>
         )
 }
 
