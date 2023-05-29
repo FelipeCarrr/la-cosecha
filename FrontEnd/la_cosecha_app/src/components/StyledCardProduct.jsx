@@ -84,7 +84,7 @@ const StyledCardProduct= ({style={},...props}) => {
             }}
             onPress={()=>{
                 navigation.navigate('ProductInfo',{
-                    id: props.product_id
+                    id: props.productId
                 })
             }}
         >
